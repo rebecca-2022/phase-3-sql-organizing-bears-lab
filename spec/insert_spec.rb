@@ -10,5 +10,12 @@ describe 'populating the bears table' do
     db.execute_batch(insert_sql)
   end
 
+  it 'has 8 bears' do
+    expect(db.execute("SELECT COUNT(*) FROM bears;").flatten[0]).to eq(8)
+  end
   
+  it 'has an unnamed bear' do
+    expect(db.execute("SELECT COUNT(*) FROM bears WHERE name IS NULL;").flatten[0]).to eq(1)
+  end
+end
   
